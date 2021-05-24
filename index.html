@@ -11,65 +11,133 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container" id="app">
     <div class="top"></div>
 
-    <div class="task" id="task">
-        <div class="daily-view">
-            <div v-for="(item ,index) in tasks" class="daily-view__task advanced-flex">
-                <a class="show-details-page" @click="showDetailsPageDisplay(index)"></a>
-                <p v-if="item.taskDone === true" class="task__status task__status_done advanced-flex">✓</p>
-                <p v-else class="task__status task__status_undone advanced-flex" @click="completeTask(index)">X</p>
-                <div class="daily-view__name">
-                    {{ item.taskName }}
-                </div>
-                <div class="daily-view__time">
-                    {{ item.taskTime }}
-                </div>
+    <div class="daily-view">
+        <div v-for="(item ,index) in tasks" class="daily-view__task">
+            <a class="show-details-page" @click="showDetailsPageDisplay(index)"></a>
+            <p v-if="item.taskDone === true" class="task__status">✓</p>
+            <p v-else class="task__status task__status_undone" @click="completeTask(index)">X</p>
+            <div class="daily-view__name">
+                {{ item.taskName }}
             </div>
-            <button class="daily-view__btn">+</button>
+            <div class="daily-view__time">
+                {{ item.taskTime }}
+            </div>
         </div>
+        <button class="daily-view__btn" @click="showNewTaskDisplay">+</button>
+    </div>
 
-        <div :style="{ display: this.detailsPageDisplay }">
-            <div class="delete-window">
-                <a class="window__close" @click="hideDetailsPageDisplay"></a>
-                <div class="details-page">
-                    <div class="details-page__top">
-                        <div class="task__status" :style=" { background: this.tasks[this.taskIndex].taskColor } "></div>
-                        <div class="details-page__name">
-                            {{ this.tasks[this.taskIndex].taskName }}
-                        </div>
-                        <hr style="width: 100px">
+    <div :style="{ display: this.detailsPageDisplay }">
+        <div class="background-shadow">
+            <a class="window__close" @click="hideDetailsPageDisplay"></a>
+            <div class="details-page">
+                <div class="details-page__top">
+                    <div class="task__status" :style=" { background: this.tasks[this.taskIndex].taskColor } "></div>
+                    <div class="details-page__name" :style="{ textDecorationLine: this.line }">
+                        {{ this.tasks[this.taskIndex].taskName }}
                     </div>
-                    <div class="details-page__date">
-                        <img src="images/calendar.png" alt="">
-                        <div class="details-page__day">
-                            {{ this.tasks[this.taskIndex].taskDay }} {{ this.tasks[this.taskIndex].taskMonth }}
-                        </div>
-                        <div class="point"></div>
-                        <div class="details-page__time">
-                            {{ this.tasks[this.taskIndex].taskTime }}
-                        </div>
-                    </div>
-                    <div class="details-page__description">
-                        {{ this.tasks[this.taskIndex].taskDesc }}
-                    </div>
-                    <div class="details-page__task-status">
-                        <div class="flex" v-if="this.tasks[this.taskIndex].taskDone === true">
-                            <p class="task__status task__status_done advanced-flex mr">✓</p> completed
-                        </div>
-                        <div class="flex" v-else>
-                            <p class="task__status task__status_undone advanced-flex mr">X</p> not completed
-                        </div>
-                    </div>
-                    <button class="details-page__delete-bnt">
-                        <img class="mr" src="images/trash.png" alt="">
-                        Delete
-                    </button>
+                    <hr style="width: 100px">
                 </div>
+                <div class="details-page__date">
+                    <img src="images/calendar.png" alt="">
+                    <div class="details-page__day">
+                        {{ this.tasks[this.taskIndex].taskDay }} {{ this.tasks[this.taskIndex].taskMonth }}
+                    </div>
+                    <div class="point"></div>
+                    <div class="details-page__time">
+                        {{ this.tasks[this.taskIndex].taskTime }}
+                    </div>
+                </div>
+                <div class="details-page__description">
+                    {{ this.tasks[this.taskIndex].taskDesc }}
+                </div>
+                <div class="details-page__task-status">
+                    <div class="details-page__task-status_flex" v-if="this.tasks[this.taskIndex].taskDone === true">
+                        <p class="task__status task__status_mr15">✓</p> completed
+                    </div>
+                    <div class="details-page__task-status_flex" v-else>
+                        <p class="task__status task__status_undone task__status_mr15" @click="completeTask(taskIndex)">
+                            X</p> not completed
+                    </div>
+                </div>
+                <button class="details-page__delete-bnt">
+                    <img class="details-page__image" src="images/trash.png" alt="">
+                    Delete
+                </button>
             </div>
         </div>
     </div>
+
+    <div :style="{ display: this.newTaskDisplay }">
+        <div class="background-shadow">
+            <a class="window__close" @click="hideNewTaskDisplay"></a>
+            <div class="new-task">
+                <div class="new-task__title">
+                    Create New Tasks
+                    <hr style="width: 50px">
+                </div>
+                <form class="field" @submit="">
+                    <h2 class="field__title">
+                        Topic
+                    </h2>
+                    <input class="field__input" type="text" maxlength="10"
+                           placeholder="Write topic" required>
+                    <h2 class="field__title">
+                        Description
+                    </h2>
+                    <input class="field__input" type="text" maxlength="60"
+                           placeholder="Write description" required>
+
+                    <p class="field__date">
+                        <input class="field__input field__input_date" type="number" min="1" max="31"
+                               placeholder="4" required>
+
+                        <select class="field__input field__input_date">
+                            <option value="Jan">Jan</option>
+                            <option value="Feb">Feb</option>
+                            <option value="March">March</option>
+                            <option value="Apr">Apr</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="Jule">Jule</option>
+                            <option value="Aug">Aug</option>
+                            <option value="Sept">Sept</option>
+                            <option value="Oct">Oct</option>
+                            <option value="Nov">Nov</option>
+                            <option value="Dec">Dec</option>
+                        </select>
+
+                        <input class="field__input field__input_date" type="number" min="1970" max="2100"
+                               placeholder="2018" required>
+                    </p>
+
+                    <h2 class="field__title">
+                        Notification
+                    </h2>
+                    <input class="field__input" type="text" maxlength="30"
+                           placeholder="10 mins before">
+
+                    <h2 class="field__title">
+                        Choose color
+                        <a class="help__link" @mouseover="showHelpDisplay" @mouseout="closeHelpDisplay">
+                            <img src="images/question.png" alt="">
+                        </a>
+                        <div class="help__content" :style="{ display: this.helpDisplay }">
+                            This is color of your task marker
+                        </div>
+                        <br>
+                    </h2>
+                    <input class="field-item__color" type="color">
+
+                    <br>
+                    <input type="submit" class="field__btn" value="ADD">
+                </form>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script src="scripts/script.js"></script>

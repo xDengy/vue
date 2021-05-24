@@ -1,8 +1,11 @@
 new Vue({
-    el: '#task',
+    el: '#app',
     data: {
         taskIndex: '1',
         detailsPageDisplay: 'none',
+        newTaskDisplay: 'none',
+        helpDisplay: 'none',
+        line: 'none',
         tasks: [
             {
                 taskName: 'Meet Lorence',
@@ -40,15 +43,36 @@ new Vue({
         ],
     },
     methods: {
+        lineThrough() {
+            if (this.tasks[this.taskIndex].taskDone === true) {
+                this.line = 'line-through';
+            } else {
+                this.line = 'none';
+            }
+        },
         showDetailsPageDisplay(index) {
             this.taskIndex = index;
             this.detailsPageDisplay = 'flex';
+            this.lineThrough();
         },
         hideDetailsPageDisplay() {
             this.detailsPageDisplay = 'none';
         },
+        showNewTaskDisplay() {
+            this.newTaskDisplay = 'flex';
+        },
+        hideNewTaskDisplay() {
+            this.newTaskDisplay = 'none';
+        },
         completeTask(index) {
             this.tasks[index].taskDone = true;
+            this.lineThrough();
+        },
+        showHelpDisplay() {
+            this.helpDisplay = 'flex';
+        },
+        closeHelpDisplay() {
+            this.helpDisplay = 'none';
         }
     }
 });

@@ -1,4 +1,4 @@
-.delete-window {
+.background-shadow {
     position: fixed;
     background-color: rgba(0, 0, 0, 0.5);
     top: 0;
@@ -59,6 +59,10 @@
     font-weight: bold;
 }
 
+.details-page__image {
+    margin-right: 15px;
+}
+
 .details-page__delete-bnt {
     width: 335px;
     height: 50px;
@@ -66,4 +70,8 @@
     bottom: 40%;
     background: #FF5C5C;
     color: #fff;
+}
+
+.details-page__task-status_flex {
+    display: flex;
 }

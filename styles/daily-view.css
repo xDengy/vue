@@ -8,7 +8,9 @@
     background: #fff;
     margin: 0 0 15px 45px;
     font-size: 14px;
-    justify-content: space-between !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .daily-view__name {
@@ -42,11 +44,15 @@
     font-size: 12px;
     font-weight: bold;
     margin: 0 0 0 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #39C4A5;
     z-index: 0;
 }
 
-.task__status_done {
-    background: #39C4A5;
+.task__status_mr15 {
+    margin-right: 15px;
 }
 
 .task__status_undone {
