@@ -1,0 +1,69 @@
+.delete-window {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.details-page {
+    background-color: #fff;
+    width: 335px;
+    height: 305px;
+    margin: -40% 0 0 0;
+    z-index: 3;
+}
+
+.details-page__top {
+    padding: 19px 0 0 0;
+    margin: 0 0 33px 0;
+    display: flex;
+    align-items: center;
+}
+
+.details-page__name {
+    font-weight: bold;
+    font-size: 18px;
+    margin-left: 15px;
+}
+
+.details-page__date {
+    margin: 0 0 30px 33px;
+    display: flex;
+    align-items: center;
+}
+
+.details-page__day {
+    margin-left: 27px;
+}
+
+.point {
+    background: #3E3E3E;
+    width: 3px;
+    height: 3px;
+    margin-left: 7px;
+    margin-right: 7px;
+}
+
+.details-page__description {
+    margin: 0 0 26px 19px;
+    width: 250px;
+    word-wrap: break-word;
+}
+
+.details-page__task-status {
+    font-weight: bold;
+}
+
+.details-page__delete-bnt {
+    width: 335px;
+    height: 50px;
+    position: absolute;
+    bottom: 40%;
+    background: #FF5C5C;
+    color: #fff;
+}

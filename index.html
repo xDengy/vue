@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TTD</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="top"></div>
+
+    <div class="task" id="task">
+        <div class="daily-view">
+            <div v-for="(item ,index) in tasks" class="daily-view__task advanced-flex">
+                <a class="show-details-page" @click="showDetailsPageDisplay(index)"></a>
+                <p v-if="item.taskDone === true" class="task__status task__status_done advanced-flex">✓</p>
+                <p v-else class="task__status task__status_undone advanced-flex" @click="completeTask(index)">X</p>
+                <div class="daily-view__name">
+                    {{ item.taskName }}
+                </div>
+                <div class="daily-view__time">
+                    {{ item.taskTime }}
+                </div>
+            </div>
+            <button class="daily-view__btn">+</button>
+        </div>
+
+        <div :style="{ display: this.detailsPageDisplay }">
+            <div class="delete-window">
+                <a class="window__close" @click="hideDetailsPageDisplay"></a>
+                <div class="details-page">
+                    <div class="details-page__top">
+                        <div class="task__status" :style=" { background: this.tasks[this.taskIndex].taskColor } "></div>
+                        <div class="details-page__name">
+                            {{ this.tasks[this.taskIndex].taskName }}
+                        </div>
+                        <hr style="width: 100px">
+                    </div>
+                    <div class="details-page__date">
+                        <img src="images/calendar.png" alt="">
+                        <div class="details-page__day">
+                            {{ this.tasks[this.taskIndex].taskDay }} {{ this.tasks[this.taskIndex].taskMonth }}
+                        </div>
+                        <div class="point"></div>
+                        <div class="details-page__time">
+                            {{ this.tasks[this.taskIndex].taskTime }}
+                        </div>
+                    </div>
+                    <div class="details-page__description">
+                        {{ this.tasks[this.taskIndex].taskDesc }}
+                    </div>
+                    <div class="details-page__task-status">
+                        <div class="flex" v-if="this.tasks[this.taskIndex].taskDone === true">
+                            <p class="task__status task__status_done advanced-flex mr">✓</p> completed
+                        </div>
+                        <div class="flex" v-else>
+                            <p class="task__status task__status_undone advanced-flex mr">X</p> not completed
+                        </div>
+                    </div>
+                    <button class="details-page__delete-bnt">
+                        <img class="mr" src="images/trash.png" alt="">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="scripts/script.js"></script>
+</body>
+</html>
