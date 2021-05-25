@@ -14,56 +14,56 @@
 <div class="container" id="app">
     <div class="top"></div>
 
-    <div class="daily-view">
-        <div v-for="(item ,index) in tasks" class="daily-view__task">
-            <a class="show-details-page" @click="showDetailsPageDisplay(index)"></a>
+    <div class="task-page">
+        <div v-for="(item ,index) in tasks" class="task-page__task">
+            <a class="show-delete-page" @click="showDeletePageDisplay(index)"></a>
             <p v-if="item.taskDone === true" class="task__status">✓</p>
             <p v-else class="task__status task__status_undone" @click="completeTask(index)">X</p>
-            <div class="daily-view__name">
+            <div class="task-page__name">
                 {{ item.taskName }}
             </div>
-            <div class="daily-view__time">
+            <div class="task-page__time">
                 {{ item.taskTime }}
             </div>
         </div>
-        <button class="daily-view__btn" @click="showNewTaskDisplay">+</button>
+        <button class="task-page__btn" @click="showNewTaskDisplay">+</button>
     </div>
 
-    <div :style="{ display: this.detailsPageDisplay }">
+    <div :style="{ display: this.deletePageDisplay }">
         <div class="background-shadow">
-            <a class="window__close" @click="hideDetailsPageDisplay"></a>
-            <div class="details-page">
-                <div class="details-page__top">
+            <a class="window__close" @click="hideDeletePageDisplay"></a>
+            <div class="delete-page">
+                <div class="delete-page__top">
                     <div class="task__status" :style=" { background: this.tasks[this.taskIndex].taskColor } "></div>
-                    <div class="details-page__name" :style="{ textDecorationLine: this.line }">
+                    <div class="delete-page__name" :style="{ textDecorationLine: this.line }">
                         {{ this.tasks[this.taskIndex].taskName }}
                     </div>
                     <hr style="width: 100px">
                 </div>
-                <div class="details-page__date">
+                <div class="delete-page__date">
                     <img src="images/calendar.png" alt="">
-                    <div class="details-page__day">
+                    <div class="delete-page__day">
                         {{ this.tasks[this.taskIndex].taskDay }} {{ this.tasks[this.taskIndex].taskMonth }}
                     </div>
                     <div class="point"></div>
-                    <div class="details-page__time">
+                    <div class="delete-page__time">
                         {{ this.tasks[this.taskIndex].taskTime }}
                     </div>
                 </div>
-                <div class="details-page__description">
+                <div class="delete-page__description">
                     {{ this.tasks[this.taskIndex].taskDesc }}
                 </div>
-                <div class="details-page__task-status">
-                    <div class="details-page__task-status_flex" v-if="this.tasks[this.taskIndex].taskDone === true">
+                <div class="delete-page__task-status">
+                    <div class="delete-page__task-status_flex" v-if="this.tasks[this.taskIndex].taskDone === true">
                         <p class="task__status task__status_mr15">✓</p> completed
                     </div>
-                    <div class="details-page__task-status_flex" v-else>
+                    <div class="delete-page__task-status_flex" v-else>
                         <p class="task__status task__status_undone task__status_mr15" @click="completeTask(taskIndex)">
                             X</p> not completed
                     </div>
                 </div>
-                <button class="details-page__delete-bnt">
-                    <img class="details-page__image" src="images/trash.png" alt="">
+                <button class="delete-page__delete-bnt">
+                    <img class="delete-page__image" src="images/trash.png" alt="">
                     Delete
                 </button>
             </div>
@@ -137,7 +137,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <script src="scripts/script.js"></script>

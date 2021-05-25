@@ -2,7 +2,7 @@ new Vue({
     el: '#app',
     data: {
         taskIndex: '1',
-        detailsPageDisplay: 'none',
+        deletePageDisplay: 'none',
         newTaskDisplay: 'none',
         helpDisplay: 'none',
         line: 'none',
@@ -50,13 +50,13 @@ new Vue({
                 this.line = 'none';
             }
         },
-        showDetailsPageDisplay(index) {
+        showDeletePageDisplay(index) {
             this.taskIndex = index;
-            this.detailsPageDisplay = 'flex';
+            this.deletePageDisplay = 'flex';
             this.lineThrough();
         },
-        hideDetailsPageDisplay() {
-            this.detailsPageDisplay = 'none';
+        hideDeletePageDisplay() {
+            this.deletePageDisplay = 'none';
         },
         showNewTaskDisplay() {
             this.newTaskDisplay = 'flex';

@@ -23,10 +23,6 @@ body {
     height: 306px;
 }
 
-.flex {
-    display: flex;
-}
-
 .window__close {
     position: absolute;
     top: 0;

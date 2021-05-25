@@ -1,8 +1,8 @@
-.daily-view {
+.task-page {
     margin: 0;
 }
 
-.daily-view__task {
+.task-page__task {
     width: 285px;
     height: 56px;
     background: #fff;
@@ -13,16 +13,16 @@
     align-items: center;
 }
 
-.daily-view__name {
+.task-page__name {
     font-weight: bold;
     margin: 0 0 0 -15px;
 }
 
-.daily-view__time {
+.task-page__time {
     padding: 0 15px 0 0;
 }
 
-.daily-view__btn {
+.task-page__btn {
     position: fixed;
     top: 92.7%;
     left: 42%;
@@ -59,7 +59,7 @@
     background: #FF5C5C;
 }
 
-.show-details-page {
+.show-delete-page {
     position: absolute;
     width: 285px;
     height: 56px;
