@@ -4,6 +4,6 @@ export class Storage {
     }
 
     add(tasks) {
-        localStorage.setItem('task-storage', JSON.stringify(tasks))
+        localStorage.setItem('task-storage', JSON.stringify(tasks));
     }
 }

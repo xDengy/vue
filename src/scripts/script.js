@@ -8,44 +8,64 @@ new Vue({
         newTaskDisplay: 'none',
         helpDisplay: 'none',
         line: 'none',
-        tasks: [
-            taskName = '',
-            taskDesc = '',
-            taskDay = '',
-            taskMonth = '',
-            taskYear = '',
-            taskNotifs = '',
-            taskColor = '',
-            taskTime = '',
-            taskDone = '',
-        ],
+        taskName: '',
+        taskDesc: '',
+        taskDay: '',
+        taskMonth: '',
+        taskYear: '',
+        taskNotifs: '',
+        taskColor: '#000000',
+        taskDone: false,
+        tasks: [],
+    },
+    created() {
+        this.tasks = this.storage.get();
     },
     methods: {
-        clearArray() {
-            this.tasks.taskName = '';
-            this.tasks.taskDesc = '';
-            this.tasks.taskDay = '';
-            this.tasks.taskMonth = '';
-            this.tasks.taskYear = '';
-            this.tasks.taskNotifs = '';
-            this.tasks.taskColor = '';
-        },
         addNewTask() {
             this.tasks.push({
-                taskName: this.tasks.taskName,
-                taskDesc: this.tasks.taskDesc,
-                taskDay: this.tasks.taskDay + 'th',
-                taskMonth: this.tasks.taskMonth,
-                taskYear: this.tasks.taskYear,
-                taskNotifs: this.tasks.taskNotifs,
-                taskColor: this.tasks.taskColor,
-                taskTime: this.currentTime(),
-                taskDone: 'false',
+                taskName: this.taskName,
+                taskDesc: this.taskDesc,
+                taskDay: this.taskDay + 'th',
+                taskMonth: this.taskMonth,
+                taskYear: this.taskYear,
+                taskNotifs: this.taskNotifs,
+                taskColor: this.taskColor,
+                taskTime: this.writeCurrentTime(),
+                taskDone: false,
             });
-
-            this.clearArray();
             localStorage.setItem('task-storage', JSON.stringify(this.tasks));
             this.newTaskDisplay = 'none';
+        },
+        deleteTask(index) {
+            if (this.tasks.taskDone === true) {
+                this.tasks.splice(index, 1);
+                this.storage.add(this.tasks);
+                this.deletePageDisplay = 'none';
+            } else {
+                alert('This task isn`t done');
+            }
+        },
+        showDeletePageDisplay(index) {
+            this.taskIndex = index;
+            this.deletePageDisplay = 'flex';
+            this.tasks.taskDone = this.tasks[index].taskDone;
+            this.tasks.taskColor = this.tasks[index].taskColor;
+            localStorage.setItem('task-storage', JSON.stringify(this.tasks));
+            this.fillTaskInfo(index);
+            this.lineThrough();
+        },
+        fillTaskInfo(index) {
+            this.tasks.taskName = this.tasks[index].taskName;
+            this.tasks.taskTime = this.tasks[index].taskTime;
+            this.tasks.taskDate = this.tasks[index].taskDay + ' ' + this.tasks[index].taskMonth;
+            this.tasks.taskDesc = this.tasks[index].taskDesc;
+        },
+        completeTask(index) {
+            this.tasks[index].taskDone = true;
+            this.tasks.taskDone = this.tasks[index].taskDone;
+            localStorage.setItem('task-storage', JSON.stringify(this.tasks));
+            this.lineThrough();
         },
         lineThrough() {
             if (this.tasks[this.taskIndex].taskDone === true) {
@@ -60,7 +80,7 @@ new Vue({
             }
             return pm;
         },
-        currentTime() {
+        writeCurrentTime() {
             let date = new Date(),
                 hour = date.getHours();
             let strHour = this.writeStrHours(hour, 'am', 'pm')
@@ -72,11 +92,6 @@ new Vue({
             }
             return hour + ' ' + strHour;
         },
-        showDeletePageDisplay(index) {
-            this.taskIndex = index;
-            this.deletePageDisplay = 'flex';
-            this.lineThrough();
-        },
         hideDeletePageDisplay() {
             this.deletePageDisplay = 'none';
         },
@@ -86,15 +101,11 @@ new Vue({
         hideNewTaskDisplay() {
             this.newTaskDisplay = 'none';
         },
-        completeTask(index) {
-            this.tasks[index].taskDone = true;
-            this.lineThrough();
-        },
         showHelpDisplay() {
             this.helpDisplay = 'flex';
         },
         closeHelpDisplay() {
             this.helpDisplay = 'none';
-        }
+        },
     }
 });

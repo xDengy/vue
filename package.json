@@ -1,0 +1,23 @@
+{
+  "name": "newVue",
+  "version": "1.0.0",
+  "description": "\"# vue2.0\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xDengy/vue2.0.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xDengy/vue2.0/issues"
+  },
+  "homepage": "https://github.com/xDengy/vue2.0#readme",
+  "devDependencies": {
+    "laravel-mix": "^6.0.19"
+  }
+}

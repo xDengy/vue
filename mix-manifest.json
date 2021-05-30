@@ -1,0 +1,11 @@
+{
+    "/dist/scripts/script-dist.js": "/dist/scripts/script-dist.js",
+    "/dist/scripts/storage-dist.js": "/dist/scripts/storage-dist.js",
+    "/dist/styles/style.css": "/dist/styles/style.css",
+    "/dist/index.html": "/dist/index.html",
+    "/dist/images/arrow.png": "/dist/images/arrow.png",
+    "/dist/images/calendar.png": "/dist/images/calendar.png",
+    "/dist/images/check.png": "/dist/images/check.png",
+    "/dist/images/question.png": "/dist/images/question.png",
+    "/dist/images/trash.png": "/dist/images/trash.png"
+}
