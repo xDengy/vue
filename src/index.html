@@ -78,23 +78,23 @@
                     Create New Tasks
                     <hr style="width: 50px">
                 </div>
-                <form class="field" @submit="">
+                <form class="field" @submit="addNewTask">
                     <h2 class="field__title">
                         Topic
                     </h2>
-                    <input class="field__input" type="text" maxlength="10"
+                    <input v-model="this.tasks.taskName" class="field__input" type="text" maxlength="10"
                            placeholder="Write topic" required>
                     <h2 class="field__title">
                         Description
                     </h2>
-                    <input class="field__input" type="text" maxlength="60"
+                    <input v-model="this.tasks.taskDesc" class="field__input" type="text" maxlength="60"
                            placeholder="Write description" required>
 
                     <p class="field__date">
-                        <input class="field__input field__input_date" type="number" min="1" max="31"
+                        <input v-model="this.tasks.taskDay" class="field__input field__input_date" type="number" min="1" max="31"
                                placeholder="4" required>
 
-                        <select class="field__input field__input_date">
+                        <select v-model="this.tasks.taskMonth" class="field__input field__input_date">
                             <option value="Jan">Jan</option>
                             <option value="Feb">Feb</option>
                             <option value="March">March</option>
@@ -109,14 +109,14 @@
                             <option value="Dec">Dec</option>
                         </select>
 
-                        <input class="field__input field__input_date" type="number" min="1970" max="2100"
+                        <input v-model="this.tasks.taskYear" class="field__input field__input_date" type="number" min="1970" max="2100"
                                placeholder="2018" required>
                     </p>
 
                     <h2 class="field__title">
                         Notification
                     </h2>
-                    <input class="field__input" type="text" maxlength="30"
+                    <input v-model="this.tasks.taskNotifs" class="field__input" type="text" maxlength="30"
                            placeholder="10 mins before">
 
                     <h2 class="field__title">
@@ -129,7 +129,7 @@
                         </div>
                         <br>
                     </h2>
-                    <input class="field-item__color" type="color">
+                    <input v-model="this.tasks.taskColor" class="field-item__color" type="color">
 
                     <br>
                     <input type="submit" class="field__btn" value="ADD">
@@ -139,6 +139,7 @@
     </div>
 </div>
 
-<script src="scripts/script.js"></script>
+<script type="module" src="scripts/storage-dist.js"></script>
+<script src="scripts/script-dist.js"></script>
 </body>
 </html>
